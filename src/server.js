@@ -12,6 +12,7 @@ app.use(logger);
 
 app.set("views", "./src/views");
 app.set("view engine", "pug");
+
 app.use("/", globalRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
