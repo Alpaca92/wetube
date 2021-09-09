@@ -7,7 +7,7 @@
     "url": "git+https://github.com/Alpaca92/wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js",
+    "dev": "nodemon --exec babel-node src/init.js",
     "assignDev": "nodemon --exec babel-node assignments/day03.js"
   },
   "author": "alpaca",
