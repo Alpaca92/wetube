@@ -29,24 +29,26 @@ export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: `Upload video` });
 };
 
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
-  const video = new Video({
-    title,
-    description,
-    createdAt: Date.now(),
-    hashtags: hashtags
-      .split(",")
-      .map((word) =>
-        !word.trim().startsWith("#") ? `#${word.trim()}` : word.trim()
-      ),
-    meta: {
-      views: 0,
-      rating: 0,
-    },
-  });
+  try {
+    await Video.create({
+      title,
+      description,
+      hashtags: hashtags
+        .split(",")
+        .map((word) =>
+          !word.trim().startsWith("#") ? `#${word.trim()}` : word.trim()
+        ),
+    });
 
-  return res.redirect("/");
+    return res.redirect("/");
+  } catch (error) {
+    return res.render("upload", {
+      pageTitle: `Upload video`,
+      errorMessage: error._message,
+    });
+  }
 };
 
 export const search = (req, res) => res.send("search");
