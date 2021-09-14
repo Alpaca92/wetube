@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/init.js",
-    "assignDev": "nodemon --exec babel-node assignments/day03.js"
+    "assignDev": "nodemon --exec babel-node assignments/day02.js"
   },
   "author": "alpaca",
   "license": "MIT",
