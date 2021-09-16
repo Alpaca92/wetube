@@ -6,6 +6,14 @@ export const getJoin = (req, res) => {
 
 export const postJoin = async (req, res) => {
   const { email, password, name, username, location } = req.body;
+  const exists = await User.exists(({ $or: [{ username }, { email }] }));
+
+  if (exists) {
+    return res.render("join", {
+      pageTitle: "Join",
+      errorMessage: "이미 username(or email)이 존재합니다.",
+    });
+  }
 
   try {
     await User.create({
@@ -13,11 +21,11 @@ export const postJoin = async (req, res) => {
       password,
       name,
       username,
-      location
+      location,
     });
-  
-    return res.redirect("/login")
-  } catch(error) {
+
+    return res.redirect("/login");
+  } catch (error) {
     return res.render("join", { pageTitle: "Join" });
   }
 };
