@@ -4,6 +4,7 @@ import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import { localsMiddleware } from "./middleware";
 
 const app = express();
 const logger = morgan("dev");
@@ -11,8 +12,8 @@ const logger = morgan("dev");
 app.set("views", "./src/views");
 app.set("view engine", "pug");
 
-app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(logger);
 app.use(
   session({
     secret: "hello",
@@ -20,13 +21,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-
-app.use((req, res, next) => {
-  req.sessionStore.all((err, sessions) => {
-    console.log(sessions);
-    next();
-  });
-});
+app.use(localsMiddleware);
 
 app.use("/", rootRouter);
 app.use("/users", userRouter);
