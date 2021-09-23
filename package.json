@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/init.js",
-    "assignDev": "nodemon --exec babel-node assignments/day03-02.js"
+    "assignDev": "nodemon --exec babel-node assignments/day05.js"
   },
   "author": "alpaca",
   "license": "MIT",
@@ -19,6 +19,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "mongoose": "^6.0.5",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
