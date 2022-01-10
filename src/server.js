@@ -8,6 +8,9 @@ const app = express();
 
 app.use(logger("dev"));
 
+app.set("view engine", "pug");
+app.set("views", __dirname + "/views");
+
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

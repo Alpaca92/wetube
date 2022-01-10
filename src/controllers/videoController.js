@@ -1,6 +1,6 @@
-export const trending = (req, res) => res.send("Homepage");
+export const trending = (req, res) => res.render("home", { pageTitle: "Home" });
 
-export const see = (req, res) => res.send("watch");
+export const see = (req, res) => res.render("watch", { pageTitle: "Watch" });
 
 export const edit = (req, res) => res.send("edit");
 
