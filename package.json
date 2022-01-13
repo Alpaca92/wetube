@@ -16,6 +16,7 @@
   "homepage": "https://alpaca92.github.io/wetube/",
   "dependencies": {
     "express": "^4.17.2",
+    "mongoose": "^6.1.6",
     "pug": "^3.0.2"
   },
   "devDependencies": {
