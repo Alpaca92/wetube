@@ -1,6 +1,6 @@
 extends base
 
 block content
-  h1=video.title
-  small #{video.rating} / 5
-  
+  h3 #{video.views} #{video.views > 1 ? 'views' : 'view'}
+  h5 #{video.rating} / 5
+  a(href=`${video.id}/edit`) Edit Video &rarr;

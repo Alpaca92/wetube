@@ -20,7 +20,7 @@ let videos = [
     rating: 5,
     comments: 3,
     createdAt: "21 minutes ago",
-    views: 51239,
+    views: 1,
     id: 2,
   },
 ];
@@ -29,17 +29,43 @@ export const trending = (req, res) => {
   return res.render("home", { pageTitle: "Home", videos });
 };
 
-export const see = (req, res) => {
+export const watch = (req, res) => {
   const { id } = req.params;
   const video = videos[id];
 
   return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
 };
 
-export const edit = (req, res) => res.send("edit");
+export const getEdit = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id];
 
-export const search = (req, res) => res.send("search");
+  return res.render("edit", { pageTitle: `Edit ${video.title}`, video });
+};
 
-export const upload = (req, res) => res.send("upload");
+export const postEdit = (req, res) => {
+  const { id } = req.params;
+  videos[id].title = req.body.title;
 
-export const deleteVideo = (req, res) => res.send("deleteVideo");
+  return res.redirect(`/videos/${id}`);
+};
+
+export const getUpload = (req, res) => {
+  return res.render("upload", { pageTitle: `Upload Video` });
+};
+
+export const postUpload = (req, res) => {
+  const id = Math.floor(Math.random() * 10 + 3);
+  const video = {
+    title: req.body.title,
+    rating: 3,
+    comments: 2,
+    createdAt: "1 minute ago",
+    views: 0,
+    id,
+  };
+
+  videos.push(video);
+
+  return res.redirect("/");
+};

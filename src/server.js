@@ -11,6 +11,7 @@ app.use(logger("dev"));
 app.set("view engine", "pug");
 app.set("views", __dirname + "/views");
 
+app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
