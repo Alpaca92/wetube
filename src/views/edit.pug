@@ -1,7 +1,9 @@
 extends templates/base
 
 block content
-  h4 Change Title #{video.title}
+  h4 Update #{video.title}
   form(method='post')
     input(name='title', placeholder='video title', value=video.title, required)
+    input(name="description", type="text", placeholder="write description", value=video.description required, minlength="20")
+    input(name="hashtags", type="text", placeholder="write hashtags separated by comma", value=video.hashtags.join(',') required)
     input(value="save", type="submit")
