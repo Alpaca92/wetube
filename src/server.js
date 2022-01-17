@@ -1,5 +1,3 @@
-import "./db";
-import "./models/Video";
 import express from "express";
 import logger from "morgan";
 import globalRouter from "./routers/globalRouter";
@@ -18,4 +16,4 @@ app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
 
-app.listen(5000, () => console.log(`http://localhost:5000`));
+export default app;
