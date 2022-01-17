@@ -1,6 +1,10 @@
 extends templates/base
 
 block content
+  if errorMessage
+    h4=errorMessage 
   form(method='post')
     input(name="title", type="text", placeholder="write title", required)
+    input(name="description", type="text", placeholder="write description", required)
+    input(name="hashtags", type="text", placeholder="write hashtags separated by comma", required)
     input(type="submit", value="Upload Video")

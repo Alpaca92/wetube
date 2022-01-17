@@ -2,6 +2,7 @@ extends templates/base
 include mixins/video
 
 block content 
-  h2 Welcome home👋
   each video in videos
     +video(video)
+  else
+    h4 sorry nothing found
