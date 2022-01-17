@@ -1,0 +1,9 @@
+extends templates/base
+include mixins/video
+
+block content 
+  form(method='get')
+    input(name="keyword", placeholder="search by title", type='text')
+    input(value="search", type='submit')
+  each video in videos
+    +video(video)
