@@ -1,2 +1,18 @@
 extends templates/base
 
+block content
+  if errorMessage
+  span= errorMessage
+  form(method="post")
+    input(name="username", type="text", placeholder="write username", required)
+    input(
+      name="password",
+      type="password",
+      placeholder="write password",
+      required
+    )
+    input(type="submit", value="Login")
+  hr
+  div 
+    span Don't have an account? 
+    a(href="/join") Create now &rarr;

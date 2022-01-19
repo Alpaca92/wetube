@@ -4,21 +4,23 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
-    title #{pageTitle} | Wetube
+    link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+    title #{ pageTitle } | Wetube
   body
     header
-      h1=pageTitle
+      h1= pageTitle
       nav 
         ul
           li 
             a(href="/") home
           li 
+            a(href="/login") Login
+          li 
             a(href="/join") Join
           li 
-            a(href='/videos/upload') upload
+            a(href="/videos/upload") upload
           li 
-            a(href='/search') search
+            a(href="/search") search
     main
       block content
     include ../partials/footer
