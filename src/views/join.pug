@@ -1,10 +1,23 @@
 extends templates/base
 
-block content 
-  form(method='post')
+block content
+  if errorMessage
+    span= errorMessage
+  form(method="post")
     input(name="email", placeholder="write email", type="email", required)
     input(name="username", placeholder="write username", type="text", required)
-    input(name="password", placeholder="write password", type="password", required)
+    input(
+      name="password",
+      placeholder="write password",
+      type="password",
+      required
+    )
+    input(
+      name="confirmPassword",
+      placeholder="confirm password",
+      type="password",
+      required
+    )
     input(name="name", placeholder="write name", type="text", required)
     input(name="location", placeholder="write location", type="text", required)
-    input(type='submit', value="Join")
+    input(type="submit", value="Join")

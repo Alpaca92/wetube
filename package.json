@@ -24,6 +24,7 @@
     "@babel/core": "^7.16.7",
     "@babel/node": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "@prettier/plugin-pug": "^1.19.1",
     "gh-pages": "^3.2.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
