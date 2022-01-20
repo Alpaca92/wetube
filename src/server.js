@@ -1,5 +1,6 @@
 import express from "express";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import logger from "morgan";
 import { localsMiddleware } from "./middleware/localMiddleware";
 import rootRouter from "./routers/rootRouter";
@@ -14,9 +15,15 @@ app.set("views", __dirname + "/views");
 app.use(logger("dev"));
 app.use(
   session({
-    secret: "secret string",
-    resave: true,
-    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+    },
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_URL,
+    }),
   })
 );
 app.use(localsMiddleware);
