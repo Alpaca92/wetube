@@ -1,4 +1,5 @@
 import User from "../models/User";
+import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) =>
@@ -66,6 +67,91 @@ export const postLogin = async (req, res) => {
   res.redirect("/");
 };
 
+export const startGithubLogin = (req, res) => {
+  const config = {
+    client_id: process.env.GITHUB_CLIENT_ID,
+    allow_signup: false,
+    scope: "read:user user:email",
+  };
+
+  const URL = `https://github.com/login/oauth/authorize?${new URLSearchParams(
+    config
+  ).toString()}`;
+
+  return res.redirect(URL);
+};
+
+export const finishGithubLogin = async (req, res) => {
+  const config = {
+    client_id: process.env.GITHUB_CLIENT_ID,
+    client_secret: process.env.GITHUB_CLIENT_SECRETS,
+    code: req.query.code,
+  };
+
+  const URL = `https://github.com/login/oauth/access_token?${new URLSearchParams(
+    config
+  ).toString()}`;
+
+  const tokenRequest = await (
+    await fetch(URL, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+  ).json();
+
+  if ("access_token" in tokenRequest) {
+    const { access_token } = tokenRequest;
+    const apiUrl = `https://api.github.com`;
+    const userData = await (
+      await fetch(`${apiUrl}/user`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    const emailData = await (
+      await fetch(`${apiUrl}/user/emails`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    const { email } = emailData.find(
+      (email) => email.primary === true && email.verified === true
+    );
+
+    if (!email) return res.redirect("/login");
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      req.session.loggedIn = true;
+      req.session.user = existingUser;
+
+      return res.redirect("/");
+    } else {
+      const user = await User.create({
+        name: userData.name,
+        username: userData.login,
+        email,
+        location: userData.location,
+        socialOnly: true,
+        password: "",
+      });
+
+      req.session.loggedIn = true;
+      req.session.user = user;
+
+      return res.redirect("/");
+    }
+  } else {
+    return res.redirect("/login");
+  }
+};
+
+/* not use */
 export const logout = (req, res) => res.send("logout");
 
 export const edit = (req, res) => res.send("edit");
