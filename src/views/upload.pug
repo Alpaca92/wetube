@@ -2,9 +2,28 @@ extends templates/base
 
 block content
   if errorMessage
-    h4=errorMessage 
-  form(method='post')
-    input(name="title", type="text", placeholder="write title", required, maxlength="80")
-    input(name="description", type="text", placeholder="write description", required, minlength="20")
-    input(name="hashtags", type="text", placeholder="write hashtags separated by comma", required)
+    h4= errorMessage
+  form(method="post", enctype="multipart/form-data")
+    label(for="video") Video file
+    input#video(name="video", type="file", accept="video/*", required)
+    input(
+      name="title",
+      type="text",
+      placeholder="write title",
+      required,
+      maxlength="80"
+    )
+    input(
+      name="description",
+      type="text",
+      placeholder="write description",
+      required,
+      minlength="20"
+    )
+    input(
+      name="hashtags",
+      type="text",
+      placeholder="write hashtags separated by comma",
+      required
+    )
     input(type="submit", value="Upload Video")
