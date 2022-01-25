@@ -28,6 +28,7 @@ app.use(
 );
 app.use(localsMiddleware);
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
