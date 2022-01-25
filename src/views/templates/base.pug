@@ -15,16 +15,18 @@ html(lang="en")
             a(href="/") home
           if loggedIn
             li
-              a(href="/users/logout") Logout
+              a(href="/users/edit") Edit profile
             li
-              a(href="/my-profile") #{ loggedInUser.name }의 프로필
+              a(href="/users/logout") Logout
+            li 
+              a(href="/videos/upload") upload
+            //- li
+            //-   a(href="/my-profile") #{ loggedInUser.name }의 프로필
           else
             li 
               a(href="/login") Login
             li 
               a(href="/join") Join
-          li 
-            a(href="/videos/upload") upload
           li 
             a(href="/search") search
     main
