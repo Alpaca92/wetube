@@ -216,5 +216,11 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/");
 };
 
-/* not use */
-export const see = (req, res) => res.send(`${req.params.id} see`);
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate("videos");
+
+  if (!user) res.status(404).render("404", { pageTitle: "User not exist" });
+
+  return res.render("profile", { pageTitle: user.name, user });
+};

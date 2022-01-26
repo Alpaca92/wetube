@@ -20,8 +20,8 @@ html(lang="en")
               a(href="/users/logout") Logout
             li 
               a(href="/videos/upload") upload
-            //- li
-            //-   a(href="/my-profile") #{ loggedInUser.name }의 프로필
+            li
+              a(href=`/users/${loggedInUser._id}`) My profile
           else
             li 
               a(href="/login") Login
