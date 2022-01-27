@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "nodemon",
-    "assets": "webpack --config webpack.config.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack --config webpack.config.js"
   },
   "name": "wetube",
   "version": "1.0.0",
