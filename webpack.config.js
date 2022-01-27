@@ -7,6 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, "assets", "js"),
     filename: "main.js",
   },
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 3000,
+    poll: 3000,
+  },
   module: {
     rules: [
       {
