@@ -226,8 +226,6 @@ export const see = async (req, res) => {
     },
   });
 
-  console.log(user);
-
   if (!user) res.status(404).render("404", { pageTitle: "User not exist" });
 
   return res.render("profile", { pageTitle: user.name, user });

@@ -8,17 +8,16 @@ module.exports = {
     }),
   ],
   mode: "development",
-  entry: "./src/client/js/main.js",
+  entry: {
+    main: "./src/client/js/main.js",
+    videoPlayer: "./src/client/js/videoPlayer.js",
+  },
   output: {
     clean: true,
-    filename: "js/main.js",
+    filename: "js/[name].js",
     path: path.resolve(__dirname, "assets"),
   },
   watch: true,
-  watchOptions: {
-    aggregateTimeout: 1000,
-    poll: 2000,
-  },
   module: {
     rules: [
       {
