@@ -1,9 +1,7 @@
 extends templates/base
 
 block content
-  if loggedInUser.avatarUrl
-    img(src=`/${loggedInUser.avatarUrl}`, alt="프로필 이미지")
-  form(method="post", enctype="multipart/form-data")
+  form.edit-profile__form(method="post", enctype="multipart/form-data")
     label(for="avatar") Avatar
     input#avatar(name="avatar", type="file", accept="image/*")
     input(
@@ -37,5 +35,5 @@ block content
     )
     input(type="submit", value="Update Profile")
     if !loggedInUser.socialOnly
-      hr
-      a(href="change-password") Change password &rarr;
+      .edit-profile___password
+        a(href="change-password") Change password &rarr;

@@ -12,9 +12,7 @@ block content
       required
     )
     input(type="submit", value="Login")
-  br
-  a(href="/users/github/start") Github Login &rarr;
-  hr
-  div 
-    span Don't have an account?
+    include partials/social-login
+  .auth-switch
+    span Don't have an account? 
     a(href="/join") Create now &rarr;

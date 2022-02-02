@@ -2,7 +2,8 @@ extends templates/base
 include mixins/video
 
 block content
-  each video in videos
-    +video(video)
-  else
-    h4 sorry nothing found
+  .video-grid
+    each video in videos
+      +video(video)
+    else
+      span.empty__message No videos found
